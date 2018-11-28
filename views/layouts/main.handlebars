@@ -7,11 +7,26 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/map.js?v=1"></script>
+    <script src="/js/index.js?v=1"></script>
+    <style>
+      #map {
+        height: 40vh;
+      }
+    </style>
   <title>Potta Porty</title>
 </head>
 
 <body>
 
+ <div id="map"></div>
+  <script>
+  
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJvB-Nh1UZ-Vkveoej_xJah4frasPeTgc&callback=initMap"
+    async defer></script>
   <div class="container">
 
     {{{body}}}
@@ -25,32 +40,6 @@
 
 </body>
 
-</html>
-
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/js/map.js?v=1"></script>
-    <script src="/js/index.js?v=1"></script>
-    <style>
-      #map {
-        height: 40vh;
-      }
-    </style>
-  </head>
-
-<body>
-  {{{body}}}
-  <div id="map"></div>
-  <script>
-  
-
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJvB-Nh1UZ-Vkveoej_xJah4frasPeTgc&callback=initMap"
-    async defer></script>
-</body>
 
 </html>
 
