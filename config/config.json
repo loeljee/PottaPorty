@@ -7,7 +7,7 @@
     "port": 3306,
     "dialect": "mysql" 
   },
-  "test": {
+  "test": { 
     "username": "root",
     "password": "1525wilma",
     "database": "bathroom",
