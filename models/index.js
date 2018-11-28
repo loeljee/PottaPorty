@@ -7,30 +7,34 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
-
+var sequelize;
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+  sequelize = new Sequelize("mysql://root:1525wilma@127.0.0.1:3306/bathroom");
+  // sequelize = new Sequelize(
+  //   config.database,
+  //   config.username,
+  //   config.password,
+  //   {
+  //     host: "127.0.0.1",
+  //     dialect: "mysql"
+  //   }
+  // );
 }
 
 fs.readdirSync(__dirname)
-  .filter(function(file) {
+  .filter(function (file) {
     return (
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
-  .forEach(function(file) {
+  .forEach(function (file) {
     var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function(modelName) {
+Object.keys(db).forEach(function (modelName) {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
