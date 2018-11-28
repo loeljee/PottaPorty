@@ -5,15 +5,26 @@ var bathroom = require("../models/bathroom.js");
 var db = require("../models");
 
 router.get("/", function(req, res) {
-  db.Bathroom.findAll().then(function(data){
-    var hbsObject = {
-      bathroom: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
+  // db.Bathroom.findAll().then(function(data){
+  //   var hbsObject = {
+  //     bathroom: data
+  //   };
+  //   console.log(hbsObject);
+  //   res.render("index", hbsObject);
+  // });
+  res.render("index", hbsObject);
 });
 
+router.get("/bathroom", function(req, res) {
+  // db.Bathroom.findAll().then(function(data){
+  //   var hbsObject = {
+  //     bathroom: data
+  //   };
+  //   console.log(hbsObject);
+  //   res.render("bathroom", hbsObject);
+  //});
+  res.render("bathroom", hbsObject);
+});
 
 
 router.post("/api/bathroom", function(req, res) {
