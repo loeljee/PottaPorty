@@ -215,7 +215,7 @@ function showMap(lat, lng, base) {
         position: markerPos,
         map: map
       });
-      var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city +'</div>';
+      var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city +'</div>' + '<div>' + 'Distance(miles) ' + restrooms[i].distance.toFixed(2) + '</div>';
       var infowindow = new google.maps.InfoWindow({});
       google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
         return function () {
