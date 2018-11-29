@@ -43,7 +43,7 @@ function showMap(lat, lng, base) {
 
   //var restrooms = getRestrooms(lat, lng);
 
-var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=80&lat=" + lat + "&lng=" + lng;
+var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=70&lat=" + lat + "&lng=" + lng;
 
 console.log("url " + url);
   $.get(url)
