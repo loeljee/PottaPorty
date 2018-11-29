@@ -1,6 +1,5 @@
 function initMap() {
 
-  var baseImage = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
   var base = {};
   var geocoder = new google.maps.Geocoder();
   var lat,
@@ -11,7 +10,7 @@ function initMap() {
       console.log(position);
       lat = position.coords.latitude;
       lng = position.coords.longitude;
-      getZipCode(geocoder, lat, lng);
+      //getZipCode(geocoder, lat, lng);
       console.log("This is the lattitude: " + lat);
       console.log("This is the longitude: " + lng);
       //initMap(lat, lng);
@@ -42,59 +41,68 @@ function showMap(lat, lng, base) {
 
 
 
-  var restrooms = getRestrooms(lat, lng);
-  addMarkers(map, base, baseImage, restrooms);
+  //var restrooms = getRestrooms(lat, lng);
 
-  function getRestrooms(lat, lng) {
-    return JSON.parse('[{"id":33499,"name":"Trader Joe\'s","street":"Center City Pkwy","city":"Escondido","state":"Ca","accessible":true,"unisex":true,"directions":"Back of the store by bread","comment":"","latitude":33.103561,"longitude":-117.07617,"created_at":"2017-04-02T04:31:13.371Z","updated_at":"2017-04-02T04:31:13.371Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":33499,"approved":true,"distance":0.85072952537192,"bearing":"248.56126807468"},{"id":34608,"name":"California Center for the Arts Escondido","street":"340 N Escondido Blvd","city":"Escondido","state":"California","accessible":false,"unisex":true,"directions":"","comment":"you have to have a ticket if it\'s a show or concert but if it\'s a dance competition or something else you don\'t need tickets for you can just walk in","latitude":33.1223726,"longitude":-117.0846026,"created_at":"2017-04-27T20:19:51.157Z","updated_at":"2017-04-27T20:19:51.157Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":34608,"approved":true,"distance":1.56976856723142,"bearing":"301.999271327872"}]');
-  };
+var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=80&lat=" + lat + "&lng=" + lng;
 
-
-
-  function addMarkers(map, base, baseImage, restrooms) {
-    var basemarker = new google.maps.Marker({
-      position: base,
-      map: map,
-      icon: baseImage
-    });
-    var basecontent = '<div>' + 'bathrooms' + '</div>';
-    var baseinfowindow = new google.maps.InfoWindow({
-      position: base,
-      content: basecontent
-    });
-    //adds a click event listener to markers to open and view info window
-    google.maps.event.addListener(basemarker, 'click', (function (basemarker, basecontent, baseinfowindow) {
-      return function () {
-        infowindow.setContent(basecontent);
-        infowindow.open(map, basemarker);
-      };
-    })(basemarker, basecontent, baseinfowindow));
-
-    //add all restroom markers to map
-    for (var i = 0, len = restrooms.length; i < len; i++) {
-      var markerPos = {
-        lat: restrooms[i].latitude,
-        lng: restrooms[i].longitude
-      };
-      var marker = new google.maps.Marker({
-        position: markerPos,
-        map: map
-      });
-      var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city +'</div>' + '<div>' + 'Distance(miles) ' + restrooms[i].distance.toFixed(2) + '</div>';
-      var infowindow = new google.maps.InfoWindow({});
-      google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
-        return function () {
-          infowindow.setContent(content);
-          infowindow.open(map, marker);
-        };
-      })(marker, content, infowindow));
-      marker.addListener('click', function () {
-        infowindow.open(map, marker);
-      });
-    }
-  }
+console.log("url " + url);
+  $.get(url)
+  .done(function( data ) {
+    addMarkers(map, base, baseImage, data);
+  });
 }
 
+function addMarkers(map, base, baseImage, restrooms) {
+  var basemarker = new google.maps.Marker({
+    position: base,
+    map: map,
+    icon: baseImage
+  });
+  var basecontent = '<div>' + 'bathrooms' + '</div>';
+  var baseinfowindow = new google.maps.InfoWindow({
+    position: base,
+    content: basecontent
+  });
+  //adds a click event listener to markers to open and view info window
+  google.maps.event.addListener(basemarker, 'click', (function (basemarker, basecontent, baseinfowindow) {
+    return function () {
+      infowindow.setContent(basecontent);
+      infowindow.open(map, basemarker);
+    };
+  })(basemarker, basecontent, baseinfowindow));
+
+  //add all restroom markers to map
+  for (var i = 0, len = restrooms.length; i < len; i++) {
+    var markerPos = {
+      lat: restrooms[i].latitude,
+      lng: restrooms[i].longitude
+    };
+    var goldStar = {
+      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+      fillColor: 'yellow',
+      fillOpacity: 0.8,
+      scale: .2,
+      strokeColor: 'gold',
+      strokeWeight: 14
+    };
+    var marker = new google.maps.Marker({
+      position: markerPos,
+      map: map,
+      icon: goldStar
+    });
+    var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city +'</div>' + '<div>' + 'Distance(miles) ' + restrooms[i].distance.toFixed(2) + '</div>';
+    var infowindow = new google.maps.InfoWindow({});
+    google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+      return function () {
+        infowindow.setContent(content);
+        infowindow.open(map, marker);
+      };
+    })(marker, content, infowindow));
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
+  }
+}
 
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
@@ -195,25 +203,3 @@ var handleDeleteBtnClick = function () {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-function getZipCode(geocoder, lat, long) {
-  var latlng = {
-    lat: lat,
-    lng: long
-  };
-  geocoder.geocode({
-    'location': latlng
-  }, function (results, status) {
-    if (status === 'OK') {
-      if (results[0]) {
-        for (j = 0; j < results[0].address_components.length; j++) {
-          if (results[0].address_components[j].types[0] == 'postal_code') {
-            console.log("Zip Code: " + results[0].address_components[j].short_name);
-            zip = results[0].address_components[j].short_name;
-            return;
-          }
-        }
-      }
-    }
-  });
-}
-//});
