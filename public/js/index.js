@@ -40,46 +40,45 @@ function showMap(lat, lng, base) {
     title: "Current ",
     icon: baseImage
   });
-  // google.maps.event.addDomListener(window, "load", initMap());
 
 
-  //   var basemarker = new google.maps.Marker({
-  //       position: base,
-  //       map: map,
-  //       icon: baseImage
-  //   });
-  //   var basecontent = '<div>' + 'bathrooms' + '</div>';
-  //   var baseinfowindow = new google.maps.InfoWindow({
-  //       position: base,
-  //       content: basecontent
-  //   });
-  //   google.maps.event.addListener(basemarker, 'click', (function (basemarker, basecontent, baseinfowindow) {
-  //       return function () {
-  //           infowindow.setContent(basecontent);
-  //           infowindow.open(map, basemarker);
-  //       };
-  //   })(basemarker, basecontent, baseinfowindow));
-  //   for (var i = 0, len = markers.length; i < len; i++) {
-  //       var markerPos = {
-  //           lat: markers[i].latitude,
-  //           lng: markers[i].longitude
-  //       };
-  //       var marker = new google.maps.Marker({
-  //           position: markerPos,
-  //           map: map
-  //       });
-  //       var content = '<div>' + markers[i].html.content + '</div>';
-  //       var infowindow = new google.maps.InfoWindow({});
-  //       google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
-  //           return function () {
-  //               infowindow.setContent(content);
-  //               infowindow.open(map, marker);
-  //           };
-  //       })(marker, content, infowindow));
-  //       marker.addListener('click', function () {
-  //           infowindow.open(map, marker);
-  //       });
-  //   }
+    var basemarker = new google.maps.Marker({
+        position: base,
+        map: map,
+        icon: baseImage
+    });
+    var basecontent = '<div>' + 'bathrooms' + '</div>';
+    var baseinfowindow = new google.maps.InfoWindow({
+        position: base,
+        content: basecontent
+    });
+    google.maps.event.addListener(basemarker, 'click', (function (basemarker, basecontent, baseinfowindow) {
+        return function () {
+            infowindow.setContent(basecontent);
+            infowindow.open(map, basemarker);
+        };
+    })(basemarker, basecontent, baseinfowindow));
+    for (var i = 0, len = markers.length; i < len; i++) {
+        var markerPos = {
+            lat: markers[i].latitude,
+            lng: markers[i].longitude
+        };
+        var marker = new google.maps.Marker({
+            position: markerPos,
+            map: map
+        });
+        var content = '<div>' + markers[i].html.content + '</div>';
+        var infowindow = new google.maps.InfoWindow({});
+        google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+            return function () {
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            };
+        })(marker, content, infowindow));
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+    }
   
 }
 
