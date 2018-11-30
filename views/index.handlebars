@@ -1,36 +1,72 @@
+    <!DOCTYPE html>
+<html lang="en-us">
 
- <div id="map"></div>
-{{!-- <div id="home">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Potta Porty</title>
+    <link rel="icon" href="assets/images/AS_square_logo.png">
+    <!-- Link to Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <!-- <link href="assets/css/style.css" type="text/css" rel="stylesheet" /> -->
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{!-- <link href="../views/../public/styles/styles.css" type="text/css" rel="stylesheet" /> --}}
+</head>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Submit a Bathroom</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Name of Establishment</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Location</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Previously Searched:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each bathroom}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="bathroom/{{this.id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<body>
+
+    <div class="container">
+
+
+
+        <div class="card" id="title-div">
+            <!-- <p id="main-lead">When you just need to go...</p> -->
+            <h1 id="main-title">Potta Porty</h1>
+            <p id="main-lead">When you just need to go...</p>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+
+
+
+        <div class="card">
+            <!-- <div class="card-header">
+                Potta Porty
+            </div> -->
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="UTC, La Jolla, CA">
+
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-primary btn-lg" title="Search"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btn btn-outline-primary btn-lg" title="Search by Current Location"><i class="fas fa-location-arrow"></i></button>
+                </form>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div> --}}
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
