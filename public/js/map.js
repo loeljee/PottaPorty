@@ -1,22 +1,22 @@
 /*eslint linebreak-style: ["error", "windows"]*/
-//var markers = @(Html.GetGoMapMarkerArray(Model));
+//var markers = @(Html.GetGoMapMarkerArray(Model));032154541230
 
-function showMap() {
-  var baseImage = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-  var base = {
-    lat: 33.1087872,
-    lng: -117.06204160000001};
-  var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 4,
-    center: base,
-    label: {
-      color: "white",
-      fontWeight: "bold",
-      text: "LocationName",
-    },
-    title: "Bathroooms",
-    icon: baseImage
-  });
+// function showMap() {
+//   var baseImage = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+//   var base = {
+//     lat: 33.1087872,
+//     lng: -117.06204160000001};
+//   var map = new google.maps.Map(document.getElementById("map"), {
+//     zoom: 4,
+//     center: base,
+//     label: {
+//       color: "white",
+//       fontWeight: "bold",
+//       text: "LocationName",
+//     },
+//     title: "Bathroooms",
+//     icon: baseImage
+//   });
   //google.maps.event.addDomListener(window, "load", initMap());
 
 
@@ -57,4 +57,4 @@ function showMap() {
     //         infowindow.open(map, marker);
     //     });
     // }
-};
+//}
