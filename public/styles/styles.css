@@ -44,3 +44,8 @@ body {
 	top: 30%;
 	transform: perspective(1px) translateY(-50%);
 }
+
+#map {
+  height: 100vh;
+  width: 100vw;
+}
