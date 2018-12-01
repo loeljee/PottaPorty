@@ -1,14 +1,39 @@
 module.exports = function(sequelize, DataTypes) {
   var Bathroom = sequelize.define("Bathroom", {
-    name: DataTypes.STRING,
-    location: DataTypes.STRING,
-    keyRequired: DataTypes.BOOLEAN,
-    doorCode: DataTypes.INTEGER,
-    cleanliness: DataTypes.INTEGER,
-    seperatedByGender: DataTypes.BOOLEAN,
-    changingTable: DataTypes.BOOLEAN,
-    privacy: DataTypes.INTEGER,
-    tpSoftness: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false},
+
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false},
+
+    keyRequired: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true},
+
+    doorCode: {
+      type: DataTypes.INTEGER,
+      allowNull: true},
+
+    cleanliness: {
+      type: DataTypes.INTEGER,
+      allowNull: true},
+
+    seperatedByGender: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true},
+
+    changingTable: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true},
+    privacy: {
+      type: DataTypes.INTEGER,
+      allowNull: true},
+
+    tpSoftness: {
+      type: DataTypes.INTEGER,
+      allowNull: true}
   });
   return Bathroom;
 };
