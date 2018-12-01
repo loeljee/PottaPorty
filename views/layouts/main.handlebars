@@ -12,38 +12,43 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {{!-- <script src="/js/map.js?v=1"></script> --}}
-    {{!-- <link href="./styles/styles.css" type="text/css" rel="stylesheet" /> --}}
+    <link href="../../public/styles/styles.css" type="text/css" rel="stylesheet" />
     <script src="/js/index.js?v=1"></script>
     <style>
       #map {
         height: 100vh;
         width: 100vw;
       }
+
+ 
     </style>
   </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
-  <a class="navbar-brand" href="/">PortaPotty</a>
+<nav id="nav" class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
+  <a class="navbar-brand text-white fas fa-poo" href="/"> PortaPotty</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav text-white ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/listview">List</a>
+        <a class="nav-link text-white" href="/listview">List</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="/bathroom">Map</a>
+        <a class="nav-link text-white" href="/bathroom">Map</a>
       </li>
     </ul>
   </div>
 </nav>
+<br>
+<br>
+
 
 
  <div class="container">

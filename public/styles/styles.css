@@ -1,58 +1,3 @@
-/* .list-group-item {
-  line-height: 2.5;
-}
-
-body {
-	background: linear-gradient(to bottom, rgba(0,0,0,0.25) 100%, transparent), url(https://images.pexels.com/photos/874629/pexels-photo-874629.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-	background-size: cover, cover;
-	background-position: center, center;
-	height: 100vh;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-#title-div {
-    width: 100%;
-    height: 150px;
-    opacity: .8;
-}
-
-#main-lead {
-    visibility: hidden;
-}
-
-#main-lead:hover {
-    visibility: visible;
-}
-
-#main-title {
-    text-align: center;
-    padding-top: 50px;
-}
-
-#main-title:hover {
-    margin-left: -400px;
-
-}
-
-.container {
-    width: 60%;
-    height: auto;
-    position: relative;
-	top: 30%;
-	transform: perspective(1px) translateY(-50%);
-}
-
-#map {
-  height: 100vh;
-  width: 100vw;
-} */
-
-
-
-
 #title-div {
    width: 100%;
    height: 150px;
@@ -61,6 +6,7 @@ body {
 
 #message {
    margin-top: 20px;
+   border: none;
 }
 
    a:hover{border-bottom: 1px solid #111;}
@@ -105,14 +51,6 @@ body {
        font-size: 28px;
        transition: all .3s ease-in-out;
      }
-
-.container {
- width: 60%;
- height: auto;
- position: relative;
-    top: 28%;
-    transform: perspective(1px) translateY(-50%);
-}
 
 #input-area {
  margin-top: 8px;
