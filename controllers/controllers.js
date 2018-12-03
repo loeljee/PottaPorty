@@ -17,6 +17,18 @@ router.get("/", function (req, res) {
   res.render("index")
 });
 
+
+router.get("/form", function (req, res) {
+  // db.Bathroom.findAll().then(function(data){
+  //   var hbsObject = {
+  //     bathroom: data
+  //   };
+  //   console.log(hbsObject);
+  //   res.render("index", hbsObject);
+  // });
+  res.render("form")
+});
+
 router.get("/bathroom", function (req, res) {
   // db.Bathroom.findAll().then(function(data){
   //   var hbsObject = {
@@ -35,7 +47,9 @@ router.get("/bathroom", function (req, res) {
 
 //var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=10&lat=33.1087872&lng=-117.0628608";
 router.get("/listview", function (req, res) {
-  var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=10&lat=";
+  var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=20&lat=";
+  if(!req.query.lat || !req.query.lng)
+       return;
     url = url + req.query.lat.replace(/["']/g, "") + "&lng=" + req.query.lng.replace(/["']/g, "");
   var response = res; //save response for use inside the on function
   https.get(url, function (res) {

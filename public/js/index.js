@@ -1,6 +1,6 @@
 // Add event listeners to the submit and delete buttons
 $(document).ready(function () {
-    $("#current").on("click", function (e) {
+    $(".listview").on("click", function (e) {
         e.preventDefault();
         var lat,
             long,
@@ -13,13 +13,14 @@ $(document).ready(function () {
                 //getZipCode(geocoder, lat, lng);
                 console.log("This is the lattitude: " + lat);
                 console.log("This is the longitude: " + lng);
+                e.preventDefault();
                 location.href = "/listview?lat=" + lat + "&lng=" + lng;
             });
 
     });
 
     $("#search").on("click", function (e) {
-        e.preventDefault();
+       
         var lat,
             geocoder,
             long,
@@ -30,6 +31,7 @@ $(document).ready(function () {
               if (status == 'OK') {
                 lat = results[0].geometry.location.lat;
                 lng = results[0].geometry.location.lng;
+                e.preventDefault();
                 location.href = "/listview?lat=" + lat + "&lng=" + lng; 
               } else {
                 alert('Geocode was not successful for the following reason: ' + status);
