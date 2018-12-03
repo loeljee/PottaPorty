@@ -14,7 +14,7 @@ router.get("/", function (req, res) {
   //   console.log(hbsObject);
   //   res.render("index", hbsObject);
   // });
-  res.render("index")
+  res.render("index");
 });
 
 
@@ -26,7 +26,7 @@ router.get("/form", function (req, res) {
   //   console.log(hbsObject);
   //   res.render("index", hbsObject);
   // });
-  res.render("form")
+  res.render("form");
 });
 
 router.get("/bathroom", function (req, res) {
@@ -67,7 +67,29 @@ router.get("/listview", function (req, res) {
 
 });
 
+router.post("/api/add/bathroom", function (req, res) {
+  // bathroom.create(["bathroom_name", "devoured"], [req.body.name, req.body.devoured], function (result) {
 
+  //   res.json({
+  //     id: result.insertId
+  //   });
+  // });
+  console.log("added bathroom");
+  console.log(req.body.restroom.city);
+  console.log(req.body.restroom.street);
+  
+  // bathroom.create(["name", "street","city","state","country" ], [req.body.restrooms.name, req.body.restrooms.street,req.body.restrooms.city,req.body.restrooms.state,req.body.restrooms.country],
+  //  function (result) {
+
+  //   res.json({
+  //     id: result.insertId
+  //   });
+  // });
+  //add to database
+  //res.render("index");
+  //res.redirect('/');
+  res.end();
+});
 
 router.post("/api/bathroom", function (req, res) {
   bathroom.create(["bathroom_name", "devoured"], [req.body.name, req.body.devoured], function (result) {

@@ -1,6 +1,6 @@
 // Add event listeners to the submit and delete buttons
 $(document).ready(function () {
-    $(".listview").on("click", function (e) {
+    $(".showlistview").on("click", function (e) {
         e.preventDefault();
         var lat,
             long,
