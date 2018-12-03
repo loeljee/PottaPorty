@@ -77,7 +77,7 @@ router.post("/api/add/bathroom", function (req, res) {
   console.log("added bathroom");
   console.log(req.body.restroom.city);
   console.log(req.body.restroom.street);
-  
+
   // bathroom.create(["name", "street","city","state","country" ], [req.body.restrooms.name, req.body.restrooms.street,req.body.restrooms.city,req.body.restrooms.state,req.body.restrooms.country],
   //  function (result) {
 
@@ -92,7 +92,7 @@ router.post("/api/add/bathroom", function (req, res) {
 });
 
 router.post("/api/bathroom", function (req, res) {
-  bathroom.create(["bathroom_name", "devoured"], [req.body.name, req.body.devoured], function (result) {
+  bathroom.create(["name", "street", "city", "state", "country", "comment"], [req.body.restroom.name, req.body.restroom.street, req.body.restroom.city,req.body.restroom.state, req.body.restroom.country, req.body.restroom.city,req.body.restroom.comment], function (result) {
 
     res.json({
       id: result.insertId
