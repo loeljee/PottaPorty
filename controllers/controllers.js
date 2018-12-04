@@ -41,8 +41,8 @@ router.get("/listview", function (req, res) {
   var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=20&lat=";
   if (!req.query.lat || !req.query.lng)
     return;
-    var lat = req.query.lat.replace(/["']/g, "");
-    var lng = req.query.lng.replace(/["']/g, "");
+  var lat = req.query.lat.replace(/["']/g, "");
+  var lng = req.query.lng.replace(/["']/g, "");
   url = url + lat + "&lng=" + lng;
   var response = res; //save response for use inside the on function
   https.get(url, function (res) {
@@ -61,8 +61,8 @@ router.get("/listview", function (req, res) {
 });
 router.get("/api/getnew/bathroom", function (req, res) {
 
-    //var bathroom = JSON.parse('[{"id":33499,"name":"NEW Trader Joe\'s","street":"Center City Pkwy","city":"Escondido","state":"Ca","accessible":true,"unisex":true,"directions":"Back of the store by bread","comment":"","latitude":33.456512,"longitude":-117.107844,"created_at":"2017-04-02T04:31:13.371Z","updated_at":"2017-04-02T04:31:13.371Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":33499,"approved":true,"distance":0.85072952537192,"bearing":"248.56126807468"},{"id":34608,"name":"NEW California Center for the Arts Escondido","street":"340 N Escondido Blvd","city":"Escondido","state":"California","accessible":false,"unisex":true,"directions":"","comment":"you have to have a ticket if it\'s a show or concert but if it\'s a dance competition or something else you don\'t need tickets for you can just walk in","latitude":40.275969,"longitude":-85.831714,"created_at":"2017-04-27T20:19:51.157Z","updated_at":"2017-04-27T20:19:51.157Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":34608,"approved":true,"distance":1.56976856723142,"bearing":"301.999271327872"}]')
-  
+  //var bathroom = JSON.parse('[{"id":33499,"name":"NEW Trader Joe\'s","street":"Center City Pkwy","city":"Escondido","state":"Ca","accessible":true,"unisex":true,"directions":"Back of the store by bread","comment":"","latitude":33.456512,"longitude":-117.107844,"created_at":"2017-04-02T04:31:13.371Z","updated_at":"2017-04-02T04:31:13.371Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":33499,"approved":true,"distance":0.85072952537192,"bearing":"248.56126807468"},{"id":34608,"name":"NEW California Center for the Arts Escondido","street":"340 N Escondido Blvd","city":"Escondido","state":"California","accessible":false,"unisex":true,"directions":"","comment":"you have to have a ticket if it\'s a show or concert but if it\'s a dance competition or something else you don\'t need tickets for you can just walk in","latitude":40.275969,"longitude":-85.831714,"created_at":"2017-04-27T20:19:51.157Z","updated_at":"2017-04-27T20:19:51.157Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":34608,"approved":true,"distance":1.56976856723142,"bearing":"301.999271327872"}]')
+
   res.json({
     restrooms: newBathroom
   });
@@ -81,10 +81,8 @@ router.post("/api/add/bathroom", function (req, res) {
   //   });
   // });
 
-  var lat = parseFloat( req.body.restroom.latitude);
-    var lng = parseFloat(  req.body.restroom.longitude);
 
-var aNewBathroom  = {
+  var aNewBathroom = {
     name: req.body.restroom.name,
     street: req.body.restroom.street,
     city: req.body.restroom.city,
@@ -92,8 +90,8 @@ var aNewBathroom  = {
     country: req.body.restroom.country,
     comment: req.body.restroom.comment,
     distance: 0.0,
-    latitude: lat,
-    longitude: lng
+    latitude: parseFloat(req.body.restroom.latitude),
+    longitude: parseFloat(req.body.restroom.longitude)
   };
   newBathroom.push(aNewBathroom);
   addBathroom = true;
