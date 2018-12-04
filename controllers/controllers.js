@@ -2,8 +2,11 @@ var express = require("express");
 var router = express.Router();
 var bathroom = require("../models/bathroom.js");
 var db = require("../models");
+var http = require("http");
+var https = require("https");
 
-router.get("/", function(req, res) {
+
+router.get("/", function (req, res) {
   // db.Bathroom.findAll().then(function(data){
   //   var hbsObject = {
   //     bathroom: data
@@ -11,10 +14,22 @@ router.get("/", function(req, res) {
   //   console.log(hbsObject);
   //   res.render("index", hbsObject);
   // });
-  res.render("index")
+  res.render("index");
 });
 
-router.get("/bathroom", function(req, res) {
+
+router.get("/form", function (req, res) {
+  // db.Bathroom.findAll().then(function(data){
+  //   var hbsObject = {
+  //     bathroom: data
+  //   };
+  //   console.log(hbsObject);
+  //   res.render("index", hbsObject);
+  // });
+  res.render("form");
+});
+
+router.get("/bathroom", function (req, res) {
   // db.Bathroom.findAll().then(function(data){
   //   var hbsObject = {
   //     bathroom: data
@@ -23,23 +38,69 @@ router.get("/bathroom", function(req, res) {
   //   res.render("bathroom", hbsObject);
   //});
   var hbsObject = {
-        bathroom: JSON.parse('[{"id":33499,"name":"Trader Joe\'s","street":"Center City Pkwy","city":"Escondido","state":"Ca","accessible":true,"unisex":true,"directions":"Back of the store by bread","comment":"","latitude":33.103561,"longitude":-117.07617,"created_at":"2017-04-02T04:31:13.371Z","updated_at":"2017-04-02T04:31:13.371Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":33499,"approved":true,"distance":0.85072952537192,"bearing":"248.56126807468"},{"id":34608,"name":"California Center for the Arts Escondido","street":"340 N Escondido Blvd","city":"Escondido","state":"California","accessible":false,"unisex":true,"directions":"","comment":"you have to have a ticket if it\'s a show or concert but if it\'s a dance competition or something else you don\'t need tickets for you can just walk in","latitude":33.1223726,"longitude":-117.0846026,"created_at":"2017-04-27T20:19:51.157Z","updated_at":"2017-04-27T20:19:51.157Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":34608,"approved":true,"distance":1.56976856723142,"bearing":"301.999271327872"}]')
-      }; 
+    bathroom: JSON.parse('[{"id":33499,"name":"Trader Joe\'s","street":"Center City Pkwy","city":"Escondido","state":"Ca","accessible":true,"unisex":true,"directions":"Back of the store by bread","comment":"","latitude":33.103561,"longitude":-117.07617,"created_at":"2017-04-02T04:31:13.371Z","updated_at":"2017-04-02T04:31:13.371Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":33499,"approved":true,"distance":0.85072952537192,"bearing":"248.56126807468"},{"id":34608,"name":"California Center for the Arts Escondido","street":"340 N Escondido Blvd","city":"Escondido","state":"California","accessible":false,"unisex":true,"directions":"","comment":"you have to have a ticket if it\'s a show or concert but if it\'s a dance competition or something else you don\'t need tickets for you can just walk in","latitude":33.1223726,"longitude":-117.0846026,"created_at":"2017-04-27T20:19:51.157Z","updated_at":"2017-04-27T20:19:51.157Z","downvote":0,"upvote":0,"country":"US","changing_table":false,"edit_id":34608,"approved":true,"distance":1.56976856723142,"bearing":"301.999271327872"}]')
+  };
   res.render("bathroom");
 });
 
-router.get("/listview", function(req,res){
-  res.render("listview");
- });
- 
-router.post("/api/bathroom", function(req, res) {
-  bathroom.create(["bathroom_name", "devoured"], [req.body.name, req.body.devoured], function(result) {
 
-    res.json({ id: result.insertId });
+
+//var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=10&lat=33.1087872&lng=-117.0628608";
+router.get("/listview", function (req, res) {
+  var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=20&lat=";
+  if(!req.query.lat || !req.query.lng)
+       return;
+    url = url + req.query.lat.replace(/["']/g, "") + "&lng=" + req.query.lng.replace(/["']/g, "");
+  var response = res; //save response for use inside the on function
+  https.get(url, function (res) {
+    res.on('data', function (data) {
+      var restrooms = JSON.parse(data);
+      for(var i = 0; i < restrooms.length; i++) {
+        restrooms[i].distance = restrooms[i].distance.toFixed(2);
+      }
+      var hbsObject = {
+             bathroom: restrooms
+           };
+      response.render("listview", hbsObject);
+    });
+  });
+
+});
+
+router.post("/api/add/bathroom", function (req, res) {
+  // bathroom.create(["bathroom_name", "devoured"], [req.body.name, req.body.devoured], function (result) {
+
+  //   res.json({
+  //     id: result.insertId
+  //   });
+  // });
+  console.log("added bathroom");
+  console.log(req.body.restroom.city);
+  console.log(req.body.restroom.street);
+
+  // bathroom.create(["name", "street","city","state","country" ], [req.body.restrooms.name, req.body.restrooms.street,req.body.restrooms.city,req.body.restrooms.state,req.body.restrooms.country],
+  //  function (result) {
+
+  //   res.json({
+  //     id: result.insertId
+  //   });
+  // });
+  //add to database
+  //res.render("index");
+  //res.redirect('/');
+  res.end();
+});
+
+router.post("/api/bathroom", function (req, res) {
+  bathroom.create(["name", "street", "city", "state", "country", "comment"], [req.body.restroom.name, req.body.restroom.street, req.body.restroom.city,req.body.restroom.state, req.body.restroom.country, req.body.restroom.city,req.body.restroom.comment], function (result) {
+
+    res.json({
+      id: result.insertId
+    });
   });
 });
 
-router.put("/api/bathroom/:id", function(req, res) {
+router.put("/api/bathroom/:id", function (req, res) {
   var condition = "id = " + req.params.id;
 
   console.log("condition", condition);
@@ -50,7 +111,7 @@ router.put("/api/bathroom/:id", function(req, res) {
       devoured: parseInt(req.body.devoured)
     },
     condition,
-    function(result) {
+    function (result) {
       if (result.changedRows === 0) {
         return res.status(404).end();
       }
