@@ -80,6 +80,10 @@ router.post("/api/add/bathroom", function (req, res) {
   //     id: result.insertId
   //   });
   // });
+
+  var lat = parseFloat( req.body.restroom.latitude);
+    var lng = parseFloat(  req.body.restroom.longitude);
+
 var aNewBathroom  = {
     name: req.body.restroom.name,
     street: req.body.restroom.street,
@@ -87,9 +91,9 @@ var aNewBathroom  = {
     state: req.body.restroom.state,
     country: req.body.restroom.country,
     comment: req.body.restroom.comment,
-    distance: 1.5,
-    latitude: 33.129484,
-    longitude: -117.028162
+    distance: 0.0,
+    latitude: lat,
+    longitude: lng
   };
   newBathroom.push(aNewBathroom);
   addBathroom = true;
