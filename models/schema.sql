@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS bathroom;
-CREATE DATABASE bathroom;
-USE bathroom;
+DROP DATABASE IF EXISTS Bathroom;
+CREATE DATABASE Bathroom;
+USE Bathroom;
 
-CREATE TABLE bathrooms
+CREATE TABLE Bathroom
 (
 	id int NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
@@ -15,5 +15,5 @@ CREATE TABLE bathrooms
 	PRIMARY KEY (id)
 );
 
-INSERT INTO bathroom.bathrooms (name, street, city, state, country, comment) 
+INSERT INTO Bathroom.Bathroom (name, street, city, state, country, comment) 
 VALUES ('Mcdonalds bathroom', '123 main street', 'Escondido', 'CA', 'United States', 'This is the greatest bathroom ever');
