@@ -29,8 +29,8 @@ $(document).ready(function () {
             var address = document.getElementById('inlineFormInput').value;
             geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == 'OK') {
-                lat = results[0].geometry.location.lat;
-                lng = results[0].geometry.location.lng;
+                lat = results[0].geometry.location.lat();
+                lng = results[0].geometry.location.lng();
                 e.preventDefault();
                 location.href = "/listview?lat=" + lat + "&lng=" + lng; 
               } else {
