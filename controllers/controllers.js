@@ -32,7 +32,7 @@ router.get("/form", function (req, res) {
   res.render("form");
 });
 
-router.get("/bathroom", function (req, res) {
+router.get("/map", function (req, res) {
   res.render("bathroom");
 });
 
