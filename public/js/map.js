@@ -5,6 +5,9 @@ function initMap() {
   var lat,
     long,
     zip;
+  //get last searched lattitude and longitude if it is 0 then you use the current location
+
+  //otherwise use the current location as the base
   navigator.geolocation.getCurrentPosition(
     function (position) {
       console.log(position);
@@ -16,8 +19,18 @@ function initMap() {
       //initMap(lat, lng);
       base.lat = lat;
       base.lng = lng;
-      showMap(lat, lng, base);
+      $.get("/api/get/currentposition")
+        .done(function (data) {
+          console.log("data " + data);
+          if (data.lat && data.lng) {
+            lat = parseFloat(data.lat);
+            lng = parseFloat(data.lng);
+           
+          }
+          showMap(lat, lng, base);
+        });
     });
+
 }
 
 function showMap(lat, lng, base) {
