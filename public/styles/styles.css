@@ -48,9 +48,13 @@ h3 {
    height: 150px;
    opacity: .8;
 }
-
+#pp {
+  font-size: 50px;
+  margin-top: 10px;
+}
 #message {
-   margin-top: 20px;
+  font-size: 50px;
+   margin-top: 10px;
    border: none;
 }
 
@@ -58,7 +62,7 @@ h3 {
    h1{font-size: 2em; padding: 20px 0;}
    p{
      font-size: .75em;
-     text-transform: uppercase;
+ 
      letter-spacing: 2px;
      padding: 20px 0;
    }
@@ -90,7 +94,6 @@ h3 {
      button:hover div{opacity: 0; transform: translate(100%,0)}
      button div{
        margin-top: 15px;
-       text-transform: uppercase;
        letter-spacing: 3px;
        font-weight: 800;
        font-size: 28px;
