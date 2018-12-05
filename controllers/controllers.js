@@ -41,6 +41,10 @@ router.get("/map", function (req, res) {
   res.render("bathroom");
 });
 
+router.get("/404", function(req, res) {
+res.render("404");
+});
+
 
 
 //var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=10&lat=33.1087872&lng=-117.0628608";
