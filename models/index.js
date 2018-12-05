@@ -1,6 +1,6 @@
 "use strict";
 
-var fs = require("fs");
+//var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 var basename = path.basename(module.filename);
@@ -11,7 +11,7 @@ var sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  sequelize = new Sequelize("mysql://root:IHAZUnicorn@127.0.0.1:3306/bathroom");
+  sequelize = new Sequelize("mysql://root:1525wilma@127.0.0.1:3306/bathroom");
   // sequelize = new Sequelize(
   //   config.database,
   //   config.username,
@@ -23,22 +23,22 @@ if (config.use_env_variable) {
   // );
 }
 
-fs.readdirSync(__dirname)
-  .filter(function (file) {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach(function (file) {
-    var model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
+// fs.readdirSync(__dirname)
+//   .filter(function (file) {
+//     return (
+//       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+//     );
+//   })
+//   .forEach(function (file) {
+//     var model = sequelize.import(path.join(__dirname, file));
+//     db[model.name] = model;
+//   });
 
-Object.keys(db).forEach(function (modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+// Object.keys(db).forEach(function (modelName) {
+//   if (db[modelName].associate) {
+//     db[modelName].associate(db);
+//   }
+// });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
