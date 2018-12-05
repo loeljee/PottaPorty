@@ -3,7 +3,34 @@ body {
 }
 
 .nav-link:hover {
-  text-decoration: none;
+  border-bottom: none!important;
+  color:#00ffee!important;
+}
+
+.nav-link {
+  border-left:solid 1px black;
+  padding: 0px 8px!important; 
+}
+
+.navbar-brand:hover {
+ border:none!important;
+ color:#00ffee!important;
+}
+#navhome {
+  border:none;
+}
+
+#cp{
+  color:white!important;
+}
+
+#cp:hover {
+  border:none!important;
+  color:#00ffee!important;
+  text-decoration:none!important;
+}
+.navbar {
+ margin:0px;
 }
 
 #title {
