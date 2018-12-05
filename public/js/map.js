@@ -5,6 +5,9 @@ function initMap() {
   var lat,
     long,
     zip;
+  //get last searched lattitude and longitude if it is 0 then you use the current location
+
+  //otherwise use the current location as the base
   navigator.geolocation.getCurrentPosition(
     function (position) {
       console.log(position);
@@ -16,8 +19,18 @@ function initMap() {
       //initMap(lat, lng);
       base.lat = lat;
       base.lng = lng;
-      showMap(lat, lng, base);
+      $.get("/api/get/currentposition")
+        .done(function (data) {
+          console.log("data " + data);
+          if (data.lat && data.lng) {
+            lat = parseFloat(data.lat);
+            lng = parseFloat(data.lng);
+           
+          }
+          showMap(lat, lng, base);
+        });
     });
+
 }
 
 function showMap(lat, lng, base) {
@@ -43,16 +56,22 @@ function showMap(lat, lng, base) {
 
   //var restrooms = getRestrooms(lat, lng);
 
-var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=70&lat=" + lat + "&lng=" + lng;
+  var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=70&lat=" + lat + "&lng=" + lng;
 
-console.log("url " + url);
+  console.log("url " + url);
   $.get(url)
-  .done(function( data ) {
-    addMarkers(map, base, baseImage, data);
-  });
+    .done(function (data) {
+      addBaseMarker(map, base, baseImage);
+      addMarkers(map, data);
+      $.get("/api/getnew/bathroom")
+        .done(function (data) {
+          console.log("data " + data);
+          addMarkers(map, data.restrooms);
+        });
+    });
 }
 
-function addMarkers(map, base, baseImage, restrooms) {
+function addBaseMarker(map, base, baseImage) {
   var basemarker = new google.maps.Marker({
     position: base,
     map: map,
@@ -70,7 +89,10 @@ function addMarkers(map, base, baseImage, restrooms) {
       infowindow.open(map, basemarker);
     };
   })(basemarker, basecontent, baseinfowindow));
+}
 
+function addMarkers(map, restrooms) {
+  console.dir("restrooms " + restrooms);
   //add all restroom markers to map
   for (var i = 0, len = restrooms.length; i < len; i++) {
     var markerPos = {
@@ -90,7 +112,7 @@ function addMarkers(map, base, baseImage, restrooms) {
       map: map,
       icon: goldStar
     });
-    var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city +'</div>' + '<div>' + 'Distance(miles) ' + restrooms[i].distance.toFixed(2) + '</div>';
+    var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city + '</div>' + '<div>' + 'Distance(miles) ' + restrooms[i].distance.toFixed(2) + '</div>';
     var infowindow = new google.maps.InfoWindow({});
     google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
       return function () {
@@ -103,5 +125,3 @@ function addMarkers(map, base, baseImage, restrooms) {
     });
   }
 }
-
-
