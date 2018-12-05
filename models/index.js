@@ -11,7 +11,7 @@ var sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  sequelize = new Sequelize("mysql://root:1525wilma@127.0.0.1:3306/bathroom");
+  sequelize = new Sequelize("mysql://root:root@127.0.0.1:3306/bathroom");
   // sequelize = new Sequelize(
   //   config.database,
   //   config.username,

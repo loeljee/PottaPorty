@@ -22,6 +22,7 @@
 <div class='row'>
 <div class='col-sm-12'>
 <div class='new-restrooms-form-container form-container'>
+  <br>
 <h3>Submit a restroom to our database</h3>
 </div>
 <form id="bathroomform" action="/api/add/bathroom" method="post">
@@ -46,7 +47,7 @@
 
 <div class="form-group text optional restroom_comment"><label class="text optional control-label" for="restroom_comment">Comment</label><textarea class="text optional form-control span6" placeholder="(Act like you are a customer then use the bathroom...)" name="restroom[comment]" id="restroom_comment">
 </textarea></div>
-<input type="submit" id="addbutton" name="commit" value="Add a Restroom" class="linkbutton linkbutton" data-disable-with="Save Restroom" />
+<input type="submit" class="btn btn-outline-primary" id="addbutton" name="commit" value="Add a Restroom" class="linkbutton linkbutton" data-disable-with="Save Restroom" />
 </form>
 </div>
 </div>
