@@ -15,5 +15,7 @@ CREATE TABLE Bathroom
 	PRIMARY KEY (id)
 );
 
+
 INSERT INTO Bathroom.Bathroom (name, street, city, state, country, comment) 
+
 VALUES ('Mcdonalds bathroom', '123 main street', 'Escondido', 'CA', 'United States', 'This is the greatest bathroom ever');

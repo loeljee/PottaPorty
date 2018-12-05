@@ -1,6 +1,7 @@
 // Add event listeners to the submit and delete buttons
 $(document).ready(function () {
     $(".showlistview").on("click", function (e) {
+
         var lat,
             long,
             zip;
@@ -9,11 +10,13 @@ $(document).ready(function () {
                 console.log(position);
                 lat = position.coords.latitude;
                 lng = position.coords.longitude;
+
                 e.preventDefault();
                 location.href = "/listview?lat=" + lat + "&lng=" + lng;
             });
 
     });
+
 
     $("#search").on("click", function (e) {
         var lat,

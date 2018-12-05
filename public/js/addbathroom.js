@@ -1,5 +1,6 @@
 //Add event listeners to the submit and delete buttons
 $(document).ready(function () {
+
     $("#bathroomform").submit(function (e) {
         e.preventDefault();
 
@@ -31,6 +32,7 @@ $(document).ready(function () {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
+
 
     });
 });
