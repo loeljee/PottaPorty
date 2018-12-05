@@ -26,7 +26,7 @@ Potta Porty is deployed to Heroku. Please check it out here:
 
 # Screenshots
 
-![Screenshot 01](screenshots/potta_porty-screenshot01.png "Landing Page")
+![Screenshot 01](screenshots/potta_porty-screenshot01.jpg "Landing Page")
 
 ![Screenshot 01](screenshots/potta_porty-screenshot02.png "Listview Page")
 
