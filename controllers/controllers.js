@@ -1,24 +1,16 @@
 var express = require("express");
 var router = express.Router();
 var bathroom = require("../models/bathroom.js");
-var db = require("../models");
 var http = require("http");
 var https = require("https");
 
-var newBathroom = [];
+// var newBathroom = [];
 var lastLat = 0;
 var lastLng = 0;
-var addBathroom = false;
+// var addBathroom = false;
 
 router.get("/", function (req, res) {
-  // db.Bathroom.findAll({}).then(function(data){
 
-  //   var hbsObject = {
-  //     bathroom: data
-  //   };
-  //   console.log(hbsObject);
-  //   res.render("index", hbsObject);
-  // });
   res.render("index");
 });
 
@@ -41,11 +33,18 @@ router.get("/map", function (req, res) {
   res.render("bathroom");
 });
 
-router.get("/404", function(req, res) {
-res.render("404");
+router.get("/404", function (req, res) {
+  res.render("404");
 });
 
+// bathroom.all(function(data) {
 
+//   var hbsObject = {
+//     bathroom: data
+//   };
+//   console.log(hbsObject);
+//   res.render("index", hbsObject);
+// });
 
 //var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=10&lat=33.1087872&lng=-117.0628608";
 router.get("/listview", function (req, res) {
@@ -53,8 +52,8 @@ router.get("/listview", function (req, res) {
 
   if (!req.query.lat || !req.query.lng)
     return;
-   lastLat = req.query.lat.replace(/["']/g, "");
-   lastLng = req.query.lng.replace(/["']/g, "");
+  lastLat = req.query.lat.replace(/["']/g, "");
+  lastLng = req.query.lng.replace(/["']/g, "");
   url = url + lastLat + "&lng=" + lastLng;
 
   var response = res; //save response for use inside the on function
@@ -101,7 +100,7 @@ router.post("/api/add/bathroom", function (req, res) {
   console.log(req.body.restroom.street);
 
 
-  // bathroom.create(["name", "street","city","state","country", "comment" ], [req.body.restroom.name, req.body.restroom.street,req.body.restroom.city,req.body.restroom.state,req.body.restroom.country, req.body.restroom.comment],
+
 
   //  function (result) {
 
@@ -110,32 +109,39 @@ router.post("/api/add/bathroom", function (req, res) {
   //   });
   // });
 
-  var aNewBathroom = {
-    name: req.body.restroom.name,
-    street: req.body.restroom.street,
-    city: req.body.restroom.city,
-    state: req.body.restroom.state,
-    country: req.body.restroom.country,
-    comment: req.body.restroom.comment,
-    distance: 0.0,
-    latitude: parseFloat(req.body.restroom.latitude),
-    longitude: parseFloat(req.body.restroom.longitude)
-  };
-  newBathroom.push(aNewBathroom);
-  addBathroom = true;
+  // var aNewBathroom = {
+  //   name: req.body.restroom.name,
+  //   street: req.body.restroom.street,
+  //   city: req.body.restroom.city,
+  //   state: req.body.restroom.state,
+  //   country: req.body.restroom.country,
+  //   comment: req.body.restroom.comment,
+  //   distance: 0.0,
+  //   latitude: parseFloat(req.body.restroom.latitude),
+  //   longitude: parseFloat(req.body.restroom.longitude)
+  // };
+  // newBathroom.push(aNewBathroom);
+  // addBathroom = true;
   //add to database
-  res.redirect('/');
+  bathroom.create(["name", "street", "city", "state", "country", "comment", "latitude", "longitude"],
+    [req.body.restroom.name, req.body.restroom.street, req.body.restroom.city,
+      req.body.restroom.state, req.body.restroom.country,
+     req.body.restroom.comment,
+      parseFloat(req.body.restroom.latitude), parseFloat(req.body.restroom.longitude)
+    ],
+    function (result) {
+      res.redirect('/');
+      // res.json({
+      //   id: result.insertId
+      // });
+    });
+
   //res.end();
 });
 
 router.post("/api/bathroom", function (req, res) {
   //ask if I put this in the post also
-  bathroom.create(["name", "street", "city", "state", "country", "comment"], [req.body.restroom.name, req.body.restroom.street, req.body.restroom.city, req.body.restroom.state, req.body.restroom.country, req.body.restroom.city, req.body.restroom.comment], function (result) {
 
-    res.json({
-      id: result.insertId
-    });
-  });
 });
 
 router.put("/api/bathroom/:id", function (req, res) {

@@ -21,7 +21,6 @@ function initMap() {
       base.lng = lng;
       $.get("/api/get/currentposition")
         .done(function (data) {
-          console.log("data " + data);
           if (data.lat && data.lng) {
             lat = parseFloat(data.lat);
             lng = parseFloat(data.lng);
@@ -92,7 +91,6 @@ function addBaseMarker(map, base, baseImage) {
 }
 
 function addMarkers(map, restrooms) {
-  console.dir("restrooms " + restrooms);
   //add all restroom markers to map
   for (var i = 0, len = restrooms.length; i < len; i++) {
     var markerPos = {
