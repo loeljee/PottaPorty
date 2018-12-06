@@ -24,7 +24,7 @@ function initMap() {
           if (data.lat && data.lng) {
             lat = parseFloat(data.lat);
             lng = parseFloat(data.lng);
-           
+
           }
           showMap(lat, lng, base);
         });
@@ -35,7 +35,7 @@ function initMap() {
 function showMap(lat, lng, base) {
 
   var baseImage = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: lat,
       lng: lng
@@ -76,13 +76,13 @@ function addBaseMarker(map, base, baseImage) {
     map: map,
     icon: baseImage
   });
-  var basecontent = '<div>' + 'bathrooms' + '</div>';
+  var basecontent = "<div>" + "bathrooms" + "</div>";
   var baseinfowindow = new google.maps.InfoWindow({
     position: base,
     content: basecontent
   });
   //adds a click event listener to markers to open and view info window
-  google.maps.event.addListener(basemarker, 'click', (function (basemarker, basecontent, baseinfowindow) {
+  google.maps.event.addListener(basemarker, "click", (function (basemarker, basecontent, baseinfowindow) {
     return function () {
       infowindow.setContent(basecontent);
       infowindow.open(map, basemarker);
@@ -98,11 +98,11 @@ function addMarkers(map, restrooms) {
       lng: restrooms[i].longitude
     };
     var goldStar = {
-      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-      fillColor: 'red',
+      path: "M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z",
+      fillColor: "red",
       fillOpacity: 0.8,
       scale: .009,
-      strokeColor: 'red',
+      strokeColor: "red",
       strokeWeight: 14
     };
     var marker = new google.maps.Marker({
@@ -110,15 +110,15 @@ function addMarkers(map, restrooms) {
       map: map,
       icon: goldStar
     });
-    var content = '<div>' + restrooms[i].name + '</div>' + '<div>' + restrooms[i].street + ', ' + restrooms[i].city + '</div>' + '<div>' + 'Distance(miles) ' + restrooms[i].distance.toFixed(2) + '</div>';
+    var content = "<div>" + restrooms[i].name + "</div>" + "<div>" + restrooms[i].street + ", " + restrooms[i].city + "</div>" + "<div>" + "Distance(miles) " + restrooms[i].distance.toFixed(2) + "</div>";
     var infowindow = new google.maps.InfoWindow({});
-    google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+    google.maps.event.addListener(marker, "click", (function (marker, content, infowindow) {
       return function () {
         infowindow.setContent(content);
         infowindow.open(map, marker);
       };
     })(marker, content, infowindow));
-    marker.addListener('click', function () {
+    marker.addListener("click", function () {
       infowindow.open(map, marker);
     });
   }

@@ -28,15 +28,16 @@ router.get("/404", function (req, res) {
 router.get("/listview", function (req, res) {
   var url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json?per_page=20&lat=";
 
-  if (!req.query.lat || !req.query.lng)
+  if (!req.query.lat || !req.query.lng) {
     return;
+  }
   lastLat = req.query.lat.replace(/["']/g, "");
   lastLng = req.query.lng.replace(/["']/g, "");
   url = url + lastLat + "&lng=" + lastLng;
 
   var response = res; //save response for use inside the on function
   https.get(url, function (res) {
-    res.on('data', function (data) {
+    res.on("data", function (data) {
       var restrooms = JSON.parse(data);
 
       for (var i = 0; i < restrooms.length; i++) {
@@ -83,7 +84,7 @@ router.post("/api/add/bathroom", function (req, res) {
       parseFloat(req.body.restroom.latitude), parseFloat(req.body.restroom.longitude)
     ],
     function (result) {
-      res.redirect('/');
+      res.redirect("/");
       // res.json({
       //   id: result.insertId
       // });
