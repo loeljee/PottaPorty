@@ -42,37 +42,27 @@ router.get("/listview", function (req, res) {
       for (var i = 0; i < restrooms.length; i++) {
         restrooms[i].distance = restrooms[i].distance.toFixed(2);
       }
+      //add bathrooms from database to list bathrooms returned from the refuge api
+      addBathroomsFromDb(data, restrooms);
 
-      bathroom.all(function (data) {
-        for (var i = 0; i < data.length; i++) {
-          var r = {};
-          r.id = data[i].id;
-          r.name = data[i].name;
-          r.street = data[i].street;
-          r.city = data[i].city;
-          r.state = data[i].state;
-          r.latitude = data[i].latitude;
-          r.longitude = data[i].longitude;
-          restrooms.unshift(r);
-        };
 
-        var hbsObject = {
-          bathroom: restrooms
-        };
+      var hbsObject = {
+        bathroom: restrooms
+      };
 
-        response.render("listview", hbsObject);
-      });
+      response.render("listview", hbsObject);
     });
   });
 
 });
 
-function addMyBathroomToList(bathroom, callback) {
-
+router.get("/api/getnew/bathroom", function (req, res) {
   bathroom.all(function (data) {
-    callback();
+    res.json({
+      restrooms: data
+    });
   });
-}
+});
 
 router.get("/api/get/currentposition", function (req, res) {
 
@@ -101,4 +91,20 @@ router.post("/api/add/bathroom", function (req, res) {
 
   //res.end();
 });
+
+function addBathroomsFromDb(data, restrooms) {
+  bathroom.all(function (data) {
+    for (var i = 0; i < data.length; i++) {
+      var r = {};
+      r.id = data[i].id;
+      r.name = data[i].name;
+      r.street = data[i].street;
+      r.city = data[i].city;
+      r.state = data[i].state;
+      r.latitude = data[i].latitude;
+      r.longitude = data[i].longitude;
+      restrooms.unshift(r);
+    }
+  });
+}
 module.exports = router;
